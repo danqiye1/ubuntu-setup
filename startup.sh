@@ -13,12 +13,24 @@ echo "Configuring Ubuntu..."
 
 gsettings set org.gnome.mutter overlay-key ''
 
-#firefox --kiosk www.google.com
+firefox --new-window --kiosk www.google.com &
 
 echo "Recording screen..."
-recording_pid=($(recordmydesktop out.ogv & echo $!))
+recordmydesktop out.ogv &
 sleep 10
-kill -2 $recording_pid
+
 
 echo "Ending exam..."
+pids=($(ps -aux | grep firefox | cut -d ' ' -f 6))
+for id in "${pids[@]}"
+do
+	kill -2 $id
+done
+
+pids=($(ps -aux | grep recordmydesktop | cut -d ' ' -f 6))
+for id in "${pids[@]}"
+do
+	kill -2 $id
+done
+
 
