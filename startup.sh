@@ -1,18 +1,7 @@
 #!/bin/bash
 
-echo "Installing dependencies..."
-sudo apt install -y recordmydesktop
-
-echo "Configuring Ubuntu..."
-#shortcuts=($(gsettings list-recursively org.gnome.desktop.wm.keybindings | cut -d ' ' -f 2))
-
-#for shortcut in "${shortcuts[@]}"
-#do
-#	gsettings set org.gnome.desktop.wm.keybindings $shortcut ['']
-#done
-
-gsettings set org.gnome.mutter overlay-key ''
-
+source install_dependencies.sh
+source diable_shortcuts.sh
 firefox --new-window --kiosk www.google.com &
 
 echo "Recording screen..."
