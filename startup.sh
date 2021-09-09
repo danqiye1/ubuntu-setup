@@ -2,6 +2,8 @@
 
 source install_dependencies.sh
 source diable_shortcuts.sh
+source local_security.sh
+
 firefox --new-window --kiosk www.google.com &
 
 echo "Recording screen..."
